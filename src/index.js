@@ -65,7 +65,7 @@ searchLocationForm.addEventListener('submit', async (e) => {
 
 async function getWeatherData(location) {
   const apiKey = 'c8360e2b8d134939891121004232706';
-  const url = 'http://api.weatherapi.com/v1/current.json?key=' + apiKey + '&q=$' + location;
+  const url = 'https://api.weatherapi.com/v1/current.json?key=' + apiKey + '&q=$' + location;
   const response = await fetch(url);
   
   return response.json();
