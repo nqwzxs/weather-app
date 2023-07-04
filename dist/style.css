@@ -29,6 +29,8 @@ body {
   flex: 1;
   border-radius: 1rem;
   background: var(--secondary-color);
+  background-size: cover;
+  background-position: center;
   display: flex;
   flex-direction: column;
   justify-content: space-between;
