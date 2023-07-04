@@ -29,6 +29,26 @@ body {
   flex: 1;
   border-radius: 1rem;
   background: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 2rem;
+  font-family: 'Poppins', sans-serif;
+}
+
+.weather-info > *, .location {
+  color: rgb(255, 255, 255);
+  mix-blend-mode: difference;
+  line-height: 1.2;
+}
+
+.weather-card .weather-info .temperature {
+  font-size: 3rem;
+  font-weight: 1000;
+}
+
+.weather-card .weather-info .condition {
+  font-size: 2rem;
 }
 
 form {
