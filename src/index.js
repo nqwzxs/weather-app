@@ -1,6 +1,8 @@
 const background = document.querySelector('.background');
 const weatherCard = document.querySelector('.weather-card');
 
+const loadingIcon = document.querySelector('svg');
+
 const location = document.querySelector('.location');
 const temperature = document.querySelector('.temperature');
 const condition = document.querySelector('.condition');
@@ -36,15 +38,22 @@ darkMode.addEventListener('change', (e) => {
   } else {
     document.documentElement.removeAttribute('data-theme');
   }
-})
+});
 
 searchLocationForm.addEventListener('submit', async (e) => {
   e.preventDefault();
+
+  clearWeatherCard();
+  background.style['background-color'] = 'rgba(0, 0, 0, 0.5)';
+  loadingIcon.style.visibility = 'visible';
 
   const input = document.querySelector('input');
   const location = input.value;
 
   const weatherData = await getWeatherData(location);
+
+  background.style['background-color'] = ''
+  loadingIcon.style.visibility = 'hidden';
 
   if (weatherData.current) {
     updateWeatherCard(weatherData);
@@ -84,19 +93,22 @@ function updateWeatherCard(data) {
   condition.textContent = data.current.condition.text;
 }
 
-async function setBackgroundGif(condition) {
-  const gifUrl = await getGifUrl('weather ' + condition);
-
-  background.style['background-image'] = `url(${gifUrl})`;
-  weatherCard.style['background'] = 'rgba(0, 0, 0, 0.25)';
-}
-
-function displayError(message) {
-  location.textContent = message;
-
+function clearWeatherCard(data) {
+  location.textContent = '';
   temperature.textContent = '';
   condition.textContent = '';
 
   background.style['background-image'] = '';
-  weatherCard.style['background'] = '';
+}
+
+async function setBackgroundGif(condition) {
+  const gifUrl = await getGifUrl('weather ' + condition);
+
+  background.style['background-image'] = `url(${gifUrl})`;
+}
+
+function displayError(message) {
+  clearWeatherCard();
+
+  location.textContent = message;
 }
