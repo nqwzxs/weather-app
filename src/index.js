@@ -1,4 +1,5 @@
-const weatherCard = document.querySelector('.weather-card');  
+const background = document.querySelector('.background');
+const weatherCard = document.querySelector('.weather-card');
 
 const location = document.querySelector('.location');
 const temperature = document.querySelector('.temperature');
@@ -29,7 +30,13 @@ scale.addEventListener('change', (e) => {
   tempMode = scale.value;
 });
 
-darkMode.addEventListener
+darkMode.addEventListener('change', (e) => {
+  if (darkMode.checked) {
+    document.documentElement.setAttribute('data-theme', 'dark');
+  } else {
+    document.documentElement.removeAttribute('data-theme');
+  }
+})
 
 searchLocationForm.addEventListener('submit', async (e) => {
   e.preventDefault();
@@ -80,7 +87,8 @@ function updateWeatherCard(data) {
 async function setBackgroundGif(condition) {
   const gifUrl = await getGifUrl('weather ' + condition);
 
-  weatherCard.style['background-image'] = `url(${gifUrl})`;
+  background.style['background-image'] = `url(${gifUrl})`;
+  weatherCard.style['background'] = 'rgba(0, 0, 0, 0.25)';
 }
 
 function displayError(message) {
@@ -88,5 +96,7 @@ function displayError(message) {
 
   temperature.textContent = '';
   condition.textContent = '';
-  weatherCard.style['background-image'] = '';
+
+  background.style['background-image'] = '';
+  weatherCard.style['background'] = '';
 }
