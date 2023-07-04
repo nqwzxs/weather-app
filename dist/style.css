@@ -97,3 +97,48 @@ form button {
   text-decoration: none;
   color: var(--text-color);
 }
+
+.modal {
+  position: absolute;
+  top: 50%;
+  left: 50%;
+  transform: translate(-50%, -50%);
+  background-color: var(--secondary-color);
+  display: flex;
+  flex-direction: column;
+  justify-content: center;
+  align-items: center;
+  padding: 2rem;
+  border-radius: 1rem;
+  z-index: 1;
+  gap: 1rem;
+  font-family: 'Poppins', sans-serif;
+  visibility: hidden;
+}
+
+.modal h1 {
+  margin-bottom: 1rem;  
+}
+
+.modal div {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  gap: 2rem;
+}
+
+.overlay {
+  position: absolute;
+  background-color: rgba(0, 0, 0, 0.5);
+  z-index: 0;
+  top: 0;
+  left: 0;
+  bottom: 0;
+  right: 0;
+  visibility: hidden;
+}
+
+.active {
+  visibility: visible;
+}

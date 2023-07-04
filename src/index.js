@@ -6,6 +6,31 @@ const condition = document.querySelector('.condition');
 
 const searchLocationForm = document.querySelector('form');
 
+const settingsButton = document.querySelector('.settings-button');
+const settingsModal = document.querySelector('.modal');
+const overlay = document.querySelector('.overlay');
+
+const darkMode = document.querySelector('.dark-mode');
+const scale = document.querySelector('.scale');
+
+let tempMode = scale.value;
+
+settingsButton.addEventListener('click', (e) => {
+  settingsModal.classList.add('active');
+  overlay.classList.add('active');
+});
+
+overlay.addEventListener('click', (e) => {
+  settingsModal.classList.remove('active');
+  overlay.classList.remove('active');
+});
+
+scale.addEventListener('change', (e) => {
+  tempMode = scale.value;
+});
+
+darkMode.addEventListener
+
 searchLocationForm.addEventListener('submit', async (e) => {
   e.preventDefault();
 
@@ -48,7 +73,7 @@ async function getGifUrl(search) {
 
 function updateWeatherCard(data) {
   location.textContent = `${data.location.name}, ${data.location.country}`;
-  temperature.textContent = `${data.current.temp_c}°C`;
+  temperature.textContent = tempMode === 'celsius' ? data.current.temp_c + '°C' : data.current.temp_f + '°F';
   condition.textContent = data.current.condition.text;
 }
 
@@ -63,5 +88,5 @@ function displayError(message) {
 
   temperature.textContent = '';
   condition.textContent = '';
-  weatherCard.style['background-image'] = ``;
+  weatherCard.style['background-image'] = '';
 }
